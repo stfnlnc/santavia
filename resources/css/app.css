@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-red-damask-50: #fef4ee;
+    --color-red-damask-100: #fce6d8;
+    --color-red-damask-200: #f8c9b0;
+    --color-red-damask-300: #f4a47d;
+    --color-red-damask-400: #ed693a;
+    --color-red-damask-500: #ea5125;
+    --color-red-damask-600: #db391b;
+    --color-red-damask-700: #b62818;
+    --color-red-damask-800: #91231b;
+    --color-red-damask-900: #751f19;
+    --color-red-damask-950: #3f0c0b;
+
+
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-slate-200, currentcolor);
+    }
+
+    .neulis {
+        font-family: 'neulis-cursive', sans-serif;
+    }
+
+    h1 {
+        @apply text-6xl lg:text-9xl font-bold
+    }
+
+    h2 {
+        @apply text-4xl lg:text-7xl font-bold
+    }
+
+    p {
+        @apply text-lg lg:text-2xl;
+    }
+}
+
+@layer components {
+    .menu-link {
+        font-family: 'neulis-cursive', sans-serif;
+        @apply text-white text-2xl font-bold hover:underline underline-offset-8;
+    }
+
+    .container {
+        @apply max-w-screen-2xl mx-auto px-8 lg:px-12;
+    }
+
+    .gradient-text {
+        background: -webkit-linear-gradient(0deg, #ffe51f, #ea6d32, #e9afc8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .btn {
+        font-family: 'neulis-cursive', sans-serif;
+        @apply w-fit px-8 py-4 text-xl font-bold text-white rounded-full bg-gradient-to-r from-[#ffe51f] via-[#ea6d32] to-[#e9afc8];
+    }
+
+    .btn-outline {
+        font-family: 'neulis-cursive', sans-serif;
+        @apply w-fit px-8 py-4 text-lg font-bold border-black border-2 text-black rounded-full bg-white;
+    }
+
+    .radius-container {
+        border-radius: 750px 750px 750px 800px / 75px 75px 75px 75px;
+    }
+}
