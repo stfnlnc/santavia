@@ -1,4 +1,4 @@
-@extends('base')
+@extends('base', ['header' => true])
 
 @section('content')
     <section class="w-full h-fit relative bg-white">
@@ -19,8 +19,8 @@
             <a class="btn mt-12" href="">je prends rendez-vous</a>
         </div>
     </section>
-    <section class="w-full h-fit relative bg-white">
-        <div class="container py-24 flex flex-col gap-12 relative h-fit">
+    <section id="a-propos" class="w-full h-fit relative bg-white">
+        <div class="container py-72 flex flex-col gap-12 relative h-fit">
             <h2 class="neulis">À propos <br> de Santavia</h2>
             <p class="max-w-200">
                 Trouver un.e infirmièr.e ou un ostéopathe durant son voyage peut être un véritable
@@ -34,8 +34,8 @@
         </div>
         <div class="w-full h-24 bg-white absolute left-0 -bottom-12 z-20 radius-container"></div>
     </section>
-    <section class="w-full h-fit bg-gradient-to-tr from-red-damask-400 to-[#e9afc8] from-70%">
-        <div class="text-white container py-48 flex flex-col gap-12 relative h-fit">
+    <section id="notre-mission" class="w-full h-fit bg-gradient-to-tr from-red-damask-400 to-[#e9afc8] from-70%">
+        <div class="text-white container py-96 flex flex-col gap-12 relative h-fit">
             <h2 class="neulis">La mission <br>
                 de santavia</h2>
             <p class="max-w-200">
@@ -72,8 +72,8 @@
         </div>
         <div class="w-full h-24 bg-white absolute left-0 -bottom-12 z-20 radius-container"></div>
     </section>
-    <section class="w-full h-fit bg-gradient-to-tr from-[#ffef27] to-[#e9afc8] from-70%">
-        <div class="text-black container py-48 flex flex-col gap-12 relative h-fit items-center">
+    <section id="nos-soins" class="w-full h-fit bg-gradient-to-tr from-[#ffef27] to-[#e9afc8] from-70%">
+        <div class="text-black container py-72 flex flex-col gap-12 relative h-fit items-center">
             <h2 class="neulis">Quels types de soins ?</h2>
             <div class="flex flex-col gap-8">
                 <div class="btn-outline text-xl lg:text-4xl w-full md:w-160 py-4 lg:py-8 text-center">pansement</div>
