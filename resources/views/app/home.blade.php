@@ -16,7 +16,7 @@
             </svg>
             <h1 class="gradient-text neulis">santavia</h1>
             <p class="neulis">Votre santé en toute sérénité</p>
-            <a class="btn mt-12" href="">je prends rendez-vous</a>
+            <a class="btn mt-12" href="{{ route('appointment.index') }}">je prends rendez-vous</a>
         </div>
     </section>
     <section id="a-propos" class="w-full h-fit relative bg-white">
@@ -68,7 +68,7 @@
                     mesure
                 </card>
             </div>
-            <a class="btn mt-12" href="">je prends rendez-vous</a>
+            <a class="btn mt-12" href="{{ route('appointment.index') }}">je prends rendez-vous</a>
         </div>
         <div class="w-full h-24 bg-white absolute left-0 -bottom-12 z-20 radius-container"></div>
     </section>
@@ -88,7 +88,7 @@
     </section>
     <section class="w-full h-fit relative ">
         <div class="container py-48 flex flex-col items-center gap-12 relative h-fit">
-            <a href="" class="btn">je prends rendez-vous</a>
+            <a href="{{ route('appointment.index') }}" class="btn">je prends rendez-vous</a>
             <h2 class="neulis text-red-damask-600 relative w-fit text-left lg:text-center">Voyager <br> sans contrainte,
             </h2>
             <p class="neulis text-lg lg:text-4xl text-[#e9afc8] -mt-12 font-bold">même avec des besoins de santé.</p>
@@ -133,7 +133,7 @@
                     </p>
                 </card>
             </div>
-            <a class="btn mt-12" href="">je prends rendez-vous</a>
+            <a class="btn mt-12" href="{{ route('appointment.index') }}">je prends rendez-vous</a>
             <div class="max-w-240 bg-red-damask-500 text-white rounded-4xl p-8 lg:p-24 flex flex-col gap-12 relative mt-48">
                 <div class="neulis text-4xl font-bold mt-12 lg:mt-0">Besoin d’un transport ?</div>
                 <p class="text-xl">

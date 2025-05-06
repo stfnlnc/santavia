@@ -21,7 +21,7 @@
                     <a class="menu-link" href="#notre-mission">notre mission</a>
                     <a class="menu-link" href="#nos-soins">nos soins</a>
                 </nav>
-                <a class="btn-outline hidden lg:block" href="">
+                <a class="btn-outline hidden lg:block" href="{{ route('appointment.index') }}">
                     prendre rendez-vous
                 </a>
                 <button id="menu-open" class="lg:hidden">
@@ -41,10 +41,15 @@
                 <a class="menu-link menu-item" href="#a-propos">à propos</a>
                 <a class="menu-link menu-item" href="#notre-mission">notre mission</a>
                 <a class="menu-link menu-item" href="#nos-soins">nos soins</a>
-                <a class="btn-outline mt-12" href="">
+                <a class="btn-outline mt-12" href="{{ route('appointment.index') }}">
                     prendre rendez-vous
                 </a>
             </nav>
+        </div>
+    @endif
+    @if (session('message'))
+        <div class="px-8 py-4 text-white bg-red-damask-500 mt-8 rounded-lg">
+            {{ session('message') }}
         </div>
     @endif
     @yield('content')
