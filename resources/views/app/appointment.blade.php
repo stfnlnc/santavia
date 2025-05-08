@@ -18,7 +18,7 @@
             </svg>
             <h1 class="gradient-text neulis">santavia</h1>
             <p class="neulis">Votre santé en toute sérénité</p>
-            <h2 class="neulis mt-24">Prenez rendez-vous</h2>
+            <h2 class="neulis mt-24 font-bold">Prenez rendez-vous</h2>
             <p class="text-center">
                 Vous souhaitez obtenir un rendez-vous avec un professionnel de santé (infirmier.e, ostéopathe) ou une solution de transport ? Remplissez le formulaire afin de soumettre votre demande.
             </p>

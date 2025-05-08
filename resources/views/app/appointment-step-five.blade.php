@@ -14,13 +14,13 @@
             </div>
             <form class="mt-8 flex flex-col items-center gap-8" action="{{ route('appointment.step-five-submit') }}" method="POST">
                 @csrf
-                <h2 class="neulis">Quand débutent les soins ?</h2>
+                <h2 class="neulis font-bold">Quand débutent les soins ?</h2>
                 <label for="start_date">
                     <input class="btn-outline mt-8 w-80"
                            type="date"
                            id="start_date"
                            name="start_date"
-                           min="2025-01-01"
+                           min="{{ date('Y-m-d', time()) }}"
                            value="{{ session('start_date') ?? '' }}"
                     />
                 </label>

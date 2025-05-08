@@ -22,6 +22,7 @@
             <p class="text-center">
                 Nous vous contactons dès que possible.
             </p>
+            <a href="{{ route('home') }}" class="w-80 btn-outline text-center cursor-pointer mt-12">retour</a>
         </div>
     </section>
 @endsection

@@ -14,24 +14,24 @@
             </div>
             <form class="mt-8 flex flex-col items-center gap-8" action="{{ route('appointment.step-one-submit') }}" method="POST">
                 @csrf
-                <h2 class="neulis">Vous cherchez</h2>
+                <h2 class="neulis font-bold">Vous cherchez</h2>
                 <div class="flex flex-col gap-4 mt-8">
                     <div class="w-80 flex">
                         <input {{ str_contains(session('type'), "Infirmier") ? "checked" : "" }} type="checkbox" name="infirmier" id="infirmier" class="peer hidden" value="Infirmier.e">
                         <label for="infirmier" class="w-80 text-center btn-outline peer-checked:bg-red-damask-400 peer-checked:text-white">
-                            Infirmier
+                            infirmier.e
                         </label>
                     </div>
                     <div class="w-80 flex">
                         <input {{ str_contains(session('type'), "Ostéopathe") ? "checked" : "" }} type="checkbox" name="osteo" id="osteo" class="peer hidden" value="Ostéopathe">
                         <label for="osteo" class="w-80 text-center btn-outline peer-checked:bg-red-damask-400 peer-checked:text-white">
-                            Ostéopathe
+                            ostéopathe
                         </label>
                     </div>
                     <div class="w-80 flex">
                         <input {{ str_contains(session('type'), "Transporteur") ? "checked" : "" }} type="checkbox" name="transporteur" id="transporteur" class="peer hidden" value="Transporteur">
                         <label for="transporteur" class="w-80 text-center btn-outline peer-checked:bg-red-damask-400 peer-checked:text-white">
-                            Transporteur
+                            transporteur
                         </label>
                     </div>
                 </div>

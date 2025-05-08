@@ -33,6 +33,12 @@
         border-color: var(--color-slate-200, currentcolor);
     }
 
+    *:focus {
+        outline: 2px var(--color-red-damask-500) solid;
+        outline-offset: 3px;
+        z-index: 9999;
+    }
+
     html {
         scroll-behavior: smooth;
     }
@@ -42,11 +48,11 @@
     }
 
     h1 {
-        @apply text-6xl lg:text-9xl font-bold
+        @apply text-6xl lg:text-9xl font-medium
     }
 
     h2 {
-        @apply text-4xl lg:text-7xl font-bold
+        @apply text-4xl lg:text-7xl font-medium
     }
 
     p {
@@ -61,7 +67,7 @@
 @layer components {
     .menu-link {
         font-family: 'neulis-cursive', sans-serif;
-        @apply text-white text-2xl font-bold hover:underline underline-offset-8;
+        @apply text-white text-xl font-medium hover:underline underline-offset-8;
     }
 
     .container {
@@ -76,12 +82,12 @@
 
     .btn {
         font-family: 'neulis-cursive', sans-serif;
-        @apply w-fit px-8 py-4 text-xl font-bold text-white rounded-full bg-gradient-to-r from-[#ffe51f] via-[#ea6d32] to-[#e9afc8];
+        @apply w-fit px-8 py-4 text-xl font-semibold text-white rounded-full bg-gradient-to-r from-[#ffe51f] via-[#ea6d32] to-[#e9afc8];
     }
 
     .btn-outline {
         font-family: 'neulis-cursive', sans-serif;
-        @apply w-fit px-8 py-4 text-lg font-bold border-black border-2 text-black rounded-full bg-white;
+        @apply w-fit px-8 py-4 text-xl font-semibold border-black border-2 text-black rounded-full bg-white;
     }
 
     .radius-container {

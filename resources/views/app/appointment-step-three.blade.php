@@ -14,7 +14,7 @@
             </div>
             <form class="mt-8 flex flex-col items-center gap-8" action="{{ route('appointment.step-three-submit') }}" method="POST">
                 @csrf
-                <h2 class="neulis">Quels soins avez-vous besoins ?</h2>
+                <h2 class="neulis font-bold">Avez-vous une ordonnance ?</h2>
                 <div class="flex flex-col items-center gap-4 mt-8">
                     <div class="w-80 flex">
                         <input {{ str_contains(session('prescription'), "Oui") ? "checked" : "" }} type="radio" name="prescription" id="prescription-yes" class="peer hidden" value="Oui">

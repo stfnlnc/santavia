@@ -14,7 +14,7 @@
             </div>
             <form class="mt-8 flex flex-col items-center gap-8" action="{{ route('appointment.step-two-submit') }}" method="POST">
                 @csrf
-                <h2 class="neulis">Quels soins avez-vous besoins ?</h2>
+                <h2 class="neulis font-bold">Quels soins avez-vous besoins ?</h2>
                 <div class="flex flex-col gap-4 mt-8">
                     <div class="w-80 flex">
                         <input {{ str_contains(session('care'), "Pansement") ? "checked" : "" }} type="checkbox" name="pansement" id="pansement" class="peer hidden" value="Pansement">

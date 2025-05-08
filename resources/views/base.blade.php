@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="shortcut icon" href="{{ asset('assets/favicon.png') }}" type="image/x-icon">
     <title>Santavia - Votre santé en toute sérénité</title>
     <link rel="stylesheet" href="https://use.typekit.net/cfr8yta.css">
@@ -21,7 +22,7 @@
                     <a class="menu-link" href="#notre-mission">notre mission</a>
                     <a class="menu-link" href="#nos-soins">nos soins</a>
                 </nav>
-                <a class="btn-outline hidden lg:block" href="{{ route('appointment.index') }}">
+                <a class="btn-outline hidden lg:block" href="{{ route('appointment.start') }}">
                     prendre rendez-vous
                 </a>
                 <button id="menu-open" class="lg:hidden">

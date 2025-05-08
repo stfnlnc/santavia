@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 
-Route::get('/prendre-rendez-vous', [AppointmentController::class, 'index'])->name('appointment.index');
+Route::get('/prendre-rendez-vous', [AppointmentController::class, 'start'])->name('appointment.start');
 Route::get('/prendre-rendez-vous/1', [AppointmentController::class, 'stepOne'])->name('appointment.step-one');
 Route::post('/prendre-rendez-vous/1', [AppointmentController::class, 'stepOneSubmit'])->name('appointment.step-one-submit');
 Route::get('/prendre-rendez-vous/2', [AppointmentController::class, 'stepTwo'])->name('appointment.step-two');
@@ -24,6 +24,9 @@ Route::get('/prendre-rendez-vous/7', [AppointmentController::class, 'stepSeven']
 Route::post('/prendre-rendez-vous/7', [AppointmentController::class, 'stepSevenSubmit'])->name('appointment.step-seven-submit');
 Route::get('/merci-pour-votre-demande', [AppointmentController::class, 'stop'])->name('appointment.stop');
 
+Route::get('/mes-rendez-vous', [AppointmentController::class, 'index'])->middleware(['auth', 'verified'])->name('appointment.index');
+Route::get('/mes-rendez-vous/{id}', [AppointmentController::class, 'show'])->middleware(['auth', 'verified'])->name('appointment.show');
+Route::delete('/mes-rendez-vous/delete/{id}', [AppointmentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('appointment.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

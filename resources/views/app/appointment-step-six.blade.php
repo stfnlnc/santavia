@@ -14,13 +14,13 @@
             </div>
             <form class="mt-8 flex flex-col items-center gap-8" action="{{ route('appointment.step-six-submit') }}" method="POST">
                 @csrf
-                <h2 class="neulis">Quels soins avez-vous besoins ?</h2>
-                <div class="flex flex-col gap-4 mt-8">
-                    <div class="w-80 flex border-b-2 border-black mx-auto mt-8">
-                        <input value="{{ session('start_location') ?? '' }}" type="text" name="start_location" id="start_location" class="text-2xl border-none w-80 neulis placeholder:text-black placeholder:font-bold" placeholder="lieu de départ">
+                <h2 class="neulis font-bold">Informations de transport</h2>
+                <div class="flex flex-col items-center gap-4 mt-8">
+                    <div class="w-fit flex btn-outline mx-auto mt-8">
+                        <input value="{{ session('start_location') ?? '' }}" type="text" name="start_location" id="start_location" class="text-2xl border-none w-fit neulis placeholder:text-black placeholder:font-bold" placeholder="lieu de départ">
                     </div>
-                    <div class="w-80 flex border-b-2 border-black mx-auto">
-                        <input value="{{ session('end_location') ?? '' }}" type="text" name="end_location" id="end_location" class="text-2xl border-none w-80 neulis placeholder:text-black placeholder:font-bold" placeholder="lieu de d'arrivée">
+                    <div class="w-fit flex btn-outline mx-auto">
+                        <input value="{{ session('end_location') ?? '' }}" type="text" name="end_location" id="end_location" class="text-2xl border-none w-fit neulis placeholder:text-black placeholder:font-bold" placeholder="lieu de d'arrivée">
                     </div>
                     <div class="w-80 flex mt-8">
                         <input {{ str_contains(session('way'), "Aller simple") ? "checked" : "" }} type="radio" name="way" id="oneway" class="peer hidden" value="Aller simple">
@@ -35,11 +35,11 @@
                         </label>
                     </div>
                     <label for="travel_date">
-                        <input class="btn-outline mt-8 w-80"
+                        <input class="btn-outline mt-8 w-80 text-2xl"
                                type="date"
                                id="travel_date"
                                name="travel_date"
-                               min="2025-01-01"
+                               min="{{ date('Y-m-d', time()) }}"
                                value="{{ session('travel_date') ?? '' }}"
                         />
                     </label>

@@ -14,7 +14,7 @@
             </div>
             <form class="mt-8 flex flex-col items-center gap-8" action="{{ route('appointment.step-four-submit') }}" method="POST">
                 @csrf
-                <h2 class="neulis">Durée des soins ?</h2>
+                <h2 class="neulis font-bold">Durée des soins ?</h2>
                 <div class="flex flex-col gap-4 mt-8">
                     <div class="w-80 flex">
                         <input {{ str_contains(session('duration'), "1 jour") ? "checked" : "" }} type="radio" name="duration" id="day" class="peer hidden" value="1 jour">

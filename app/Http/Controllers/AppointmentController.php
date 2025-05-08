@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Appointment as AppointmentAlias;
+use App\Mail\AppointmentNotification;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
-    public function index()
+    public function start()
     {
         return view('app.appointment');
     }
@@ -155,16 +158,27 @@ class AppointmentController extends Controller
             'phone' => ['required', 'string', 'max:255'],
             'nationality' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
+            'g-recaptcha-response' => ['required']
         ]);
 
-        $appointment = Appointment::create([
+        session([
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
-            'birth' => $request->birth,
             'email' => $request->email,
+            'birth' => $request->birth,
             'phone' => $request->phone,
             'nationality' => $request->nationality,
             'address' => $request->address,
+        ]);
+
+        $appointment = Appointment::create([
+            'lastname' => session('lastname'),
+            'firstname' => session('firstname'),
+            'email' => session('email'),
+            'birth' => session('birth'),
+            'phone' => session('phone'),
+            'nationality' => session('nationality'),
+            'address' => session('address'),
             'type' => session('type'),
             'care' => session('care'),
             'prescription' => session('prescription'),
@@ -177,8 +191,24 @@ class AppointmentController extends Controller
             'travel_date' => session('travel_date'),
         ]);
 
-        $appointment->save();
+        if ($this->isValid($_POST['g-recaptcha-response'])) {
+            $appointment->save();
+        } else {
+            return redirect('/prendre-rendez-vous/7')->with('message', 'Le reCaptcha n\'est pas valide');
+        }
 
+        Mail::to($request->email)
+            ->send(new AppointmentAlias());
+        Mail::to('administrateur@chezmoi.com')
+            ->send(new AppointmentNotification());
+
+        session()->forget('lastname');
+        session()->forget('firstname');
+        session()->forget('email');
+        session()->forget('birth');
+        session()->forget('phone');
+        session()->forget('nationality');
+        session()->forget('address');
         session()->forget('type');
         session()->forget('care');
         session()->forget('prescription');
@@ -193,8 +223,65 @@ class AppointmentController extends Controller
         return redirect('/merci-pour-votre-demande');
     }
 
+    function isValid($code, $ip = null)
+    {
+        if (empty($code)) {
+            return false; // Si aucun code n'est entré, on ne cherche pas plus loin
+        }
+        $params = [
+            'secret' => "6LcgIzErAAAAAMJzI0oz2areHg0DVrask0u5Dznx",
+            'response' => $code
+        ];
+        if ($ip) {
+            $params['remoteip'] = $ip;
+        }
+        $url = "https://www.google.com/recaptcha/api/siteverify?" . http_build_query($params);
+        if (function_exists('curl_version')) {
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_TIMEOUT, 1);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // Evite les problèmes, si le ser
+            $response = curl_exec($curl);
+        } else {
+            // Si curl n'est pas dispo, un bon vieux file_get_contents
+            $response = file_get_contents($url);
+        }
+
+        if (empty($response) || is_null($response)) {
+            return false;
+        }
+
+        $json = json_decode($response);
+        return $json->success;
+    }
+
     public function stop()
     {
         return view('app.appointment-stop');
+    }
+
+    public function index()
+    {
+        $appointments = Appointment::all();
+
+        return view('admin.appointment-index', [
+            'appointments' => $appointments,
+        ]);
+    }
+
+    public function show(int $id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        return view('admin.appointment-show', [
+            'appointment' => $appointment,
+        ]);
+    }
+
+    public function destroy(int $id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $appointment->delete();
+        return redirect()->route('appointment.index');
     }
 }
