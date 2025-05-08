@@ -229,7 +229,7 @@ class AppointmentController extends Controller
             return false; // Si aucun code n'est entré, on ne cherche pas plus loin
         }
         $params = [
-            'secret' => "6LcgIzErAAAAAMJzI0oz2areHg0DVrask0u5Dznx",
+            'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
             'response' => $code
         ];
         if ($ip) {
