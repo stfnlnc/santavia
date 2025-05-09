@@ -161,7 +161,7 @@
                 <circle fill="url(#monGradient)" cx="10.17" cy="9.91" r="1.77"/>
             </svg>
             <h1 class="gradient-text neulis">santavia</h1>
-            <a class="btn" href="">contactez-nous</a>
+            <a class="btn" href="mailto:contact@santavia-lourdes.com">contactez-nous</a>
             <div class="flex flex-col text-center gap-2 mt-12">
                 <a href="" class="neulis">Mentions légales</a>
                 <a href="" class="neulis">Politique de confidentialité</a>

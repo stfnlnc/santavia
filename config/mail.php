@@ -97,6 +97,11 @@ return [
             'retry_after' => 60,
         ],
 
+        // Ajoute cette configuration pour le pilote 'mail'
+        'mail' => [
+            'transport' => 'mail',
+        ],
+
     ],
 
     /*
