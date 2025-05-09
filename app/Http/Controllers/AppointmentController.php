@@ -199,7 +199,7 @@ class AppointmentController extends Controller
 
         Mail::to($request->email)
             ->send(new AppointmentAlias());
-        Mail::to('stefan@studiokhi.com')
+        Mail::to('contact@santavia-lourdes.com')
             ->send(new AppointmentNotification());
 
         session()->forget('lastname');
