@@ -16,7 +16,7 @@
                 @csrf
                 <h2 class="neulis font-bold">Saisissez vos <br> coordonnées</h2>
                 <p>
-                    Saisissez vos coordonnées afin qu’un professionnel de santé qua- lifié et disponible prenne contact avec vous pour convenir d’un ren- dez-vous.
+                    Saisissez vos coordonnées afin qu’un professionnel de santé qualifié et disponible prenne contact avec vous pour convenir d’un rendez-vous.
                 </p>
                 <div class="flex flex-col mt-8">
                     <div class="flex btn-outline mx-auto mt-8">
@@ -45,6 +45,14 @@
                     </div>
                     <x-input-error class="mt-2" :messages="$errors->get('address')"/>
                     <div class="flex btn-outline mx-auto mt-8">
+                        <input value="{{ old('postal_code') ?? '' }}" type="text" name="postal_code" id="postal_code" class="text-2xl border-none w-80 neulis placeholder:text-black placeholder:font-bold" placeholder="code postal">
+                    </div>
+                    <x-input-error class="mt-2" :messages="$errors->get('postal_code')"/>
+                    <div class="flex btn-outline mx-auto mt-8">
+                        <input value="{{ old('city') ?? '' }}" type="text" name="city" id="city" class="text-2xl border-none w-80 neulis placeholder:text-black placeholder:font-bold" placeholder="ville">
+                    </div>
+                    <x-input-error class="mt-2" :messages="$errors->get('city')"/>
+                    <div class="flex btn-outline mx-auto mt-8">
                         <input value="{{ old('nationality') ?? '' }}" type="text" name="nationality" id="nationality" class="text-2xl border-none w-80 neulis placeholder:text-black placeholder:font-bold" placeholder="nationalité">
                     </div>
                     <x-input-error class="mt-2" :messages="$errors->get('nationality')"/>
@@ -53,7 +61,7 @@
                 <button type="submit" class="w-80 btn mt-12">finaliser ma demande</button>
                 <p class="w-80 text-xs">
                     *Les informations recueillies via ce formulaire sont nécessaires pour organiser votre prise en charge par un professionnel de santé à domicile. Elles sont traitées par Santavia en conformité avec le RGPD. Pour en savoir plus sur la gestion de vos données et vos droits, consultez
-                    notre Politique de Confidentialité.
+                    notre <a target="_blank" class="underline" href="{{ route('privacy-policy') }}">Politique de Confidentialité</a>.
                 </p>
                 @if (str_contains(session('type'), "Transporteur"))
                     <a href="{{ route('appointment.step-six') }}" class="w-80 btn-outline text-center cursor-pointer">retour</a>

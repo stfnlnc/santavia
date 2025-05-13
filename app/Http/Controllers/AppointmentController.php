@@ -158,6 +158,8 @@ class AppointmentController extends Controller
             'phone' => ['required', 'string', 'max:255'],
             'nationality' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'postal_code' => ['required', 'string', 'max:255'],
             'g-recaptcha-response' => ['required']
         ]);
 
@@ -169,6 +171,8 @@ class AppointmentController extends Controller
             'phone' => $request->phone,
             'nationality' => $request->nationality,
             'address' => $request->address,
+            'city' => $request->city,
+            'postal_code' => $request->postal_code,
         ]);
 
         $appointment = Appointment::create([
@@ -179,6 +183,8 @@ class AppointmentController extends Controller
             'phone' => session('phone'),
             'nationality' => session('nationality'),
             'address' => session('address'),
+            'city' => session('city'),
+            'postal_code' => session('postal_code'),
             'type' => session('type'),
             'care' => session('care'),
             'prescription' => session('prescription'),
@@ -263,19 +269,37 @@ class AppointmentController extends Controller
 
     public function index()
     {
-        $appointments = Appointment::all();
+        $appointments = Appointment::where(['status' => 'En attente'])->get();
+        $appointments_programmed = Appointment::where(['status' => 'Programmé'])->get();
+        $appointments_finished = Appointment::where(['status' => 'Terminé'])->get();
 
         return view('admin.appointment-index', [
             'appointments' => $appointments,
+            'appointments_programmed' => $appointments_programmed,
+            'appointments_finished' => $appointments_finished,
         ]);
+    }
+
+    public function changeStatus(Request $request, int $id)
+    {
+        $request->validate([
+            'status' => ['required', 'string', 'max:255'],
+        ]);
+
+        $appointment = Appointment::findOrFail($id);
+        $appointment->status = $request->status;
+        $appointment->save();
+        return redirect()->route('appointment.index');
     }
 
     public function show(int $id)
     {
         $appointment = Appointment::findOrFail($id);
+
         return view('admin.appointment-show', [
             'appointment' => $appointment,
         ]);
+
     }
 
     public function destroy(int $id)
@@ -284,4 +308,5 @@ class AppointmentController extends Controller
         $appointment->delete();
         return redirect()->route('appointment.index');
     }
+
 }

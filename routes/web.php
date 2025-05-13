@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,10 +25,20 @@ Route::post('/prendre-rendez-vous/6', [AppointmentController::class, 'stepSixSub
 Route::get('/prendre-rendez-vous/7', [AppointmentController::class, 'stepSeven'])->name('appointment.step-seven');
 Route::post('/prendre-rendez-vous/7', [AppointmentController::class, 'stepSevenSubmit'])->name('appointment.step-seven-submit');
 Route::get('/merci-pour-votre-demande', [AppointmentController::class, 'stop'])->name('appointment.stop');
+Route::get('/politique-de-confidentialite', [PolicyController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('/mentions-legales', [PolicyController::class, 'termsOfUse'])->name('terms-of-use');
+Route::get('/cookies', [PolicyController::class, 'cookiesConsent'])->name('cookies-consent');
 
 Route::get('/mes-rendez-vous', [AppointmentController::class, 'index'])->middleware(['auth', 'verified'])->name('appointment.index');
 Route::get('/mes-rendez-vous/{id}', [AppointmentController::class, 'show'])->middleware(['auth', 'verified'])->name('appointment.show');
 Route::delete('/mes-rendez-vous/delete/{id}', [AppointmentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('appointment.destroy');
+Route::patch('/mes-rendez-vous/change-status/{id}', [AppointmentController::class, 'changeStatus'])->middleware(['auth', 'verified'])->name('appointment.change-status');
+Route::get('/modifier-termes-et-conditions', [PolicyController::class, 'definePolicy'])->middleware(['auth', 'verified'])->name('appointment.define-policy');
+Route::post('/modifier-termes-et-conditions/edit', [PolicyController::class, 'editPolicy'])->middleware(['auth', 'verified'])->name('appointment.edit-policy');
+
+Route::get('/professions', [ProfessionController::class, 'index'])->middleware(['auth', 'verified'])->name('professions.index');
+Route::post('/professions', [ProfessionController::class, 'store'])->middleware(['auth', 'verified'])->name('professions.store');
+Route::delete('/professions/{id}', [ProfessionController::class, 'destroy'])->middleware(['auth', 'verified'])->name('professions.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

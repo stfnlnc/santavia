@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('appointment.index')" :active="request()->routeIs('appointment.index')">
                         {{ __('Rendez-vous') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('appointment.define-policy')" :active="request()->routeIs('appointment.define-policy')">
+                        {{ __('Termes & Conditions') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -72,6 +75,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('appointment.index')" :active="request()->routeIs('appointment.index')">
+                {{ __('Rendez-vous') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('appointment.define-policy')" :active="request()->routeIs('appointment.define-policy')">
+                {{ __('Termes & Conditions') }}
             </x-responsive-nav-link>
         </div>
 

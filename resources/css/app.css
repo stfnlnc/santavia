@@ -43,6 +43,10 @@
         scroll-behavior: smooth;
     }
 
+    body {
+        @apply text-lg lg:text-2xl;
+    }
+
     .neulis {
         font-family: 'neulis-cursive', sans-serif;
     }
@@ -55,12 +59,28 @@
         @apply text-4xl lg:text-7xl font-medium
     }
 
+    h3 {
+        @apply text-3xl lg:text-5xl font-medium
+    }
+
+    h4 {
+        @apply text-2xl lg:text-4xl font-medium
+    }
+
+    h5 {
+        @apply text-xl lg:text-3xl font-medium
+    }
+
     p {
         @apply text-lg lg:text-2xl;
     }
 
     button, label {
         @apply cursor-pointer;
+    }
+
+    ul {
+        @apply list-disc list-inside;
     }
 }
 

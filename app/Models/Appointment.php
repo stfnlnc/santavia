@@ -16,6 +16,8 @@ class Appointment extends Model
         'phone',
         'birth',
         'address',
+        'city',
+        'postal_code',
         'nationality',
         'travel_date',
         'start_date',
@@ -27,6 +29,8 @@ class Appointment extends Model
         'prescription',
         'care',
         'type',
+        'status',
+        'person',
         'created_at',
         'updated_at',
     ];

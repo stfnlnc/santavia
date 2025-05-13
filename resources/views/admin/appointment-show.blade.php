@@ -63,6 +63,22 @@
                         </tr>
                         <tr class="odd:bg-neutral-100 even:bg-white border-b border-neutral-200 hover:bg-neutral-50">
                             <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap">
+                                Code postal
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $appointment->postal_code }}
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-neutral-100 even:bg-white border-b border-neutral-200 hover:bg-neutral-50">
+                            <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap">
+                                Ville
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $appointment->city }}
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-neutral-100 even:bg-white border-b border-neutral-200 hover:bg-neutral-50">
+                            <th scope="row" class="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap">
                                 Nationalité
                             </th>
                             <td class="px-6 py-4">
