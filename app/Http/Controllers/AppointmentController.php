@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\Appointment as AppointmentAlias;
 use App\Mail\AppointmentNotification;
 use App\Models\Appointment;
+use App\Models\Profession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -292,12 +293,30 @@ class AppointmentController extends Controller
         return redirect()->route('appointment.index');
     }
 
+    public function addProfessional(Request $request, int $id)
+    {
+        $request->validate([
+            'professions' => 'nullable|array',
+            'professions.*' => 'exists:professions,id',
+        ]);
+
+        $appointment = Appointment::findOrFail($id);
+
+        $professionIds = $request->input('professions', []);
+
+        // Synchroniser les relations avec la table pivot
+        $appointment->professions()->sync($professionIds);
+
+        return redirect()->route('appointment.show', $appointment->id);
+    }
+
     public function show(int $id)
     {
         $appointment = Appointment::findOrFail($id);
-
+        $professions = Profession::all();
         return view('admin.appointment-show', [
             'appointment' => $appointment,
+            'professions' => $professions,
         ]);
 
     }
@@ -305,6 +324,7 @@ class AppointmentController extends Controller
     public function destroy(int $id)
     {
         $appointment = Appointment::findOrFail($id);
+        $appointment->professions()->detach();
         $appointment->delete();
         return redirect()->route('appointment.index');
     }

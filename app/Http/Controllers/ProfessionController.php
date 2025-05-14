@@ -47,6 +47,7 @@ class ProfessionController extends Controller
     public function destroy(int $id)
     {
         $profession = Profession::findOrFail($id);
+        $profession->appointments()->detach();
         $profession->delete();
         return back();
     }

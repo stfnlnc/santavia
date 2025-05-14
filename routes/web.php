@@ -39,6 +39,8 @@ Route::post('/modifier-termes-et-conditions/edit', [PolicyController::class, 'ed
 Route::get('/professions', [ProfessionController::class, 'index'])->middleware(['auth', 'verified'])->name('professions.index');
 Route::post('/professions', [ProfessionController::class, 'store'])->middleware(['auth', 'verified'])->name('professions.store');
 Route::delete('/professions/{id}', [ProfessionController::class, 'destroy'])->middleware(['auth', 'verified'])->name('professions.destroy');
+Route::post('/professions/add/{id}', [AppointmentController::class, 'addProfessional'])->middleware(['auth', 'verified'])->name('appointment.add-professional');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

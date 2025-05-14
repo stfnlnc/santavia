@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Profession extends Model
 {
@@ -17,4 +18,10 @@ class Profession extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function appointments(): BelongsToMany
+    {
+        return $this->belongsToMany(Appointment::class, 'appointment_profession')
+            ->withTimestamps();
+    }
 }

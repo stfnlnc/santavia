@@ -8,6 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="odd:bg-neutral-100 even:bg-white overflow-hidden shadow-xs sm:rounded-lg">
+                Assigner des professionnels
+
+                <form method="post" class="py-4" action="{{ route('appointment.add-professional', $appointment) }}">
+                    @csrf
+                    <select id="select-professions" name="professions[]" multiple placeholder="Sélectionner" autocomplete="off" onchange="this.form.submit()">
+                        <option value="">Sélectionner</option>
+                        @foreach($professions as $profession)
+                            <option {{ $appointment->professions->contains('id', $profession->id) ? 'selected' : '' }} value="{{ $profession->id }}">{{ $profession->name }}</option>
+                        @endforeach
+                    </select>
+                </form>
+
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left rtl:text-right text-neutral-500">
                         <thead class="text-xs text-neutral-700 uppercase bg-neutral-200">
@@ -174,3 +186,4 @@
         </div>
     </div>
 </x-app-layout>
+

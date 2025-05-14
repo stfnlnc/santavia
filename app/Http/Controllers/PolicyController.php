@@ -14,9 +14,9 @@ class PolicyController extends Controller
         $cookies_consent = Policy::firstWhere('name', 'cookies_consent');
 
         return view('admin.define-policy', [
-            'privacy_policy' => $privacy_policy->content,
-            'terms_of_use' => $terms_of_use->content,
-            'cookies_consent' => $cookies_consent->content,
+            'privacy_policy' => $privacy_policy->content ?? "",
+            'terms_of_use' => $terms_of_use->content ?? "",
+            'cookies_consent' => $cookies_consent->content ?? "",
         ]);
     }
 
@@ -37,11 +37,14 @@ class PolicyController extends Controller
 
     public function termsOfUse()
     {
-        return view('app.terms-of-use');
+        $terms_of_use = Policy::firstWhere('name', 'terms_of_use');
+
+        return view('app.terms-of-use', compact('terms_of_use'));
     }
 
     public function cookiesConsent()
     {
-        return view('app.cookies-consent');
+        $cookies_consent = Policy::firstWhere('name', 'cookies_consent');
+        return view('app.cookies-consent', compact('cookies_consent'));
     }
 }
